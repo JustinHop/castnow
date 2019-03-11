@@ -199,8 +199,13 @@ Some problems have already been addressed in our wiki https://github.com/xat/cas
 
 * [tooryx](https://github.com/tooryx)
 * [przemyslawpluta](https://github.com/przemyslawpluta)
+* [JustinHop](https://github.com/JustinHop)
 
 ## License
 Copyright (c) 2015 Simon Kusterer
+
+Additions by Justin Hoppensteadt:
+    Docker compat
+    shift and ctrl for bigger seeks
 
 Licensed under the MIT license.

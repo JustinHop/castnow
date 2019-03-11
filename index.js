@@ -366,22 +366,53 @@ var ctrl = function(err, p, ctx) {
 
     // Rewind, one "seekCount" per press
     left: function() {
-      seek(-30);
+      seek(-60);
     },
 
     // Forward, one "seekCount" per press
     right: function() {
-      seek(30);
+      seek(60);
     }
   };
 
+  var keyMappingsShift = {
+    // Rewind, one "seekCount" per press
+    left: function() {
+      seek(-300);
+    },
+
+    // Forward, one "seekCount" per press
+    right: function() {
+      seek(300);
+    }
+  };
+
+  var keyMappingsCtrl = {
+    // Rewind, one "seekCount" per press
+    left: function() {
+      seek(-10);
+    },
+
+    // Forward, one "seekCount" per press
+    right: function() {
+      seek(10);
+    }
+  };
+
+
   if (is_keyboard_interactive) {
     process.stdin.on('keypress', function(ch, key) {
-      if (key && key.name && keyMappings[key.name]) {
+      if (key && key.name && key.ctrl && keyMappingsCtrl[key.name]) {
+        debug('ctrl + key pressed: %s', key.name);
+        keyMappingsCtrl[key.name]();
+      } else if (key && key.name && key.shift && keyMappingsShift[key.name]) {
+        debug('shift + key pressed: %s', key.name);
+        keyMappingsShift[key.name]();
+      }
+      else if (key && key.name && keyMappings[key.name]) {
         debug('key pressed: %s', key.name);
         keyMappings[key.name]();
-      }
-      if (key && key.ctrl && key.name == 'c') {
+      } else if (key && key.ctrl && key.name == 'c') {
         process.exit();
       }
     });
