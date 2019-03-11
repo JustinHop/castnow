@@ -1,6 +1,6 @@
 FROM node:alpine
 
-RUN apk --no-cache install \
+RUN apk --no-cache add \
     youtube-dl \
     git \
     ffmpeg \
